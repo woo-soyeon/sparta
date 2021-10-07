@@ -21,6 +21,7 @@
             crossorigin="anonymous"></script>
 
     <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -45,17 +46,19 @@
             border: 3px solid black;
             border-radius: 10px;
             padding: 30px;
+            display: none;
         }
     </style>
     <script>
-        let count = 1;
-        function hey() {
-            if (count % 2 == 0) {
-                alert("짝수입니다!")
+        function openclose() {
+            let status = $('#post-box').css('display');
+            if (status == 'block') {
+                $('#post-box').hide();
+                $('#btn-posting-box').text('포스팅박스 열기');
             } else {
-                alert("홀수입니다!")
+                $('#post-box').show();
+                $('#btn-posting-box').text('포스팅박스 닫기');
             }
-            count += 1;
         }
     </script>
 
@@ -68,14 +71,14 @@
             <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
             <hr class="my-4">
             <p class="lead">
-                <a onclick="hey()" class="btn btn-primary btn-lg" href="#" role="button">포스팅박스 열기</a>
+                <a onclick="openclose()" id="btn-posting-box" class="btn btn-primary btn-lg" href="#" role="button">포스팅박스 열기</a>
             </p>
         </div>
 
-        <div class="posting-box">
+        <div class="posting-box" id="post-box">
             <div class="form-group">
-                <label for="exampleInputEmail1">아티클 URL</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                <label>아티클 URL</label>
+                <input type="email" class="form-control" id="article-url" aria-describedby="emailHelp" placeholder="">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">간단 코멘트</label>
