@@ -63,7 +63,33 @@
             margin: auto;
             display: block;
         }
+
+        .rate{
+            color: blue;
+        }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            get_rate();
+        });
+
+        function get_rate() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/rate",
+                data: {},
+                success: function (response) {
+                    let now_rate = response.rate;
+                    $('#now-rate').text(now_rate);
+                }
+            })
+        }
+
+        function order() {
+            alert('주문이 완료되었습니다!');
+        }
+    </script>
 </head>
 
 <body>
@@ -74,6 +100,7 @@
             <span class="subtitle">가격:3,000원/개</span>
         </div>
         <p class="content">이 양초는 사실 특별한 힘을 가지고 있어요. 양초를 켜고 소원을 빌면 짜자잔 뭐든지 이뤄지게 된답니다. 하나 사가세요! 대나무향이 아주 좋아요</p>
+        <p class="rate">달러-원 환율: <span id="now-rate">1219.15</span></p>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -108,7 +135,7 @@
                    aria-describedby="basic-addon1">
         </div>
         <div class="button">
-            <button type="button" class="btn btn-primary">주문하기</button>
+            <button type="button" onclick="order()" class="btn btn-primary">주문하기</button>
         </div>
     </div>
 </body>
